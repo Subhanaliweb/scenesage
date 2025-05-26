@@ -21,3 +21,43 @@ LLM-powered CLI tool to analyze subtitle files (`.srt`) and extract structured m
 
 ```bash
 pip install -r requirements.txt
+```
+
+## Usage
+
+```bash
+python scenesage.py plan9.srt --model HuggingFaceH4/zephyr-7b-beta --output scenes.json
+```
+
+## Arguments
+
+- plan9.srt: The subtitle file you want to analyze (must be in .srt format).
+
+- --model: Name or path of a locally available Hugging Face model compatible with transformers.
+
+- --output: (Optional) Output file path for the results. Defaults to scenes.json.
+
+## Output:
+
+- Segment the .srt file into scenes based on 4-second pauses.
+
+- Use the LLM to extract structured metadata for each scene.
+
+- Save the results in a JSON file like:
+ 
+```
+[
+  {
+    "start": "00:00:01,000",
+    "end": "00:00:08,000",
+    "transcript": "...",
+    "summary": "...",
+    "characters": [...],
+    "mood": "...",
+    "cultural_refs": [...]
+  },
+  ...
+]
+```
+
+The file is saved to the path provided via --output, or scenes.json by default.
